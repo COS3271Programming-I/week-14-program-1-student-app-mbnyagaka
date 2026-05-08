@@ -1,0 +1,164 @@
+import java.util.Scanner;
+
+class PersonStudent {
+    String firstName;
+    String lastName;
+    String gender;
+    int age;
+    double weight;
+    double height;
+    String ethnicGroup;
+    String religion;
+
+    void sayGreeting() {
+        System.out.println(firstName + " says: Hello!");
+    }
+
+    void sayPrayer() {
+        System.out.println(firstName + " says a prayer.");
+    }
+
+    void takeNap() {
+        System.out.println(firstName + " is taking a nap.");
+    }
+
+    void eatSomething() {
+        System.out.println(firstName + " is eating.");
+    }
+
+    String getName() {
+        return firstName + " " + lastName;
+    }
+
+    void setReligion(String newReligion) {
+        religion = newReligion;
+    }
+}
+
+class Student extends PersonStudent {
+    String major;
+    String classRank;
+    String studentEmail;
+
+    void goToClass() {
+        System.out.println(firstName + " is going to class for " + major + ".");
+    }
+
+    // Override eatSomething
+    void eatSomething() {
+        System.out.println(firstName + " is eating pizza and ramen noodles.");
+    }
+}
+
+public class StudentTasksApp {
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+
+        Student s = new Student();
+
+        System.out.print("Enter first name: ");
+        s.firstName = input.nextLine();
+
+        System.out.print("Enter last name: ");
+        s.lastName = input.nextLine();
+
+        System.out.print("Enter gender: ");
+        s.gender = input.nextLine();
+
+        System.out.print("Enter age: ");
+        s.age = input.nextInt();
+
+        System.out.print("Enter weight: ");
+        s.weight = input.nextDouble();
+
+        System.out.print("Enter height: ");
+        s.height = input.nextDouble();
+        input.nextLine();
+
+        System.out.print("Enter ethnic group: ");
+        s.ethnicGroup = input.nextLine();
+
+        System.out.print("Enter religion: ");
+        s.religion = input.nextLine();
+
+        System.out.print("Enter major: ");
+        s.major = input.nextLine();
+
+        System.out.print("Enter class rank: ");
+        s.classRank = input.nextLine();
+
+        System.out.print("Enter student email: ");
+        s.studentEmail = input.nextLine();
+
+        int choice;
+
+        do {
+            System.out.println("\n--- Student Menu ---");
+            System.out.println("1. Say Greeting");
+            System.out.println("2. Say Prayer");
+            System.out.println("3. Take Nap");
+            System.out.println("4. Eat Something");
+            System.out.println("5. Print Name");
+            System.out.println("6. Change Religion");
+            System.out.println("7. Go To Class");
+            System.out.println("8. Print Student Info");
+            System.out.println("0. Exit");
+
+            System.out.print("Enter choice: ");
+            choice = input.nextInt();
+            input.nextLine();
+
+            switch(choice) {
+
+                case 1:
+                    s.sayGreeting();
+                    break;
+
+                case 2:
+                    s.sayPrayer();
+                    break;
+
+                case 3:
+                    s.takeNap();
+                    break;
+
+                case 4:
+                    s.eatSomething();
+                    break;
+
+                case 5:
+                    System.out.println("Name: " + s.getName());
+                    break;
+
+                case 6:
+                    System.out.print("Enter new religion: ");
+                    String newReligion = input.nextLine();
+                    s.setReligion(newReligion);
+                    System.out.println("Religion updated.");
+                    break;
+
+                case 7:
+                    s.goToClass();
+                    break;
+
+                case 8:
+                    System.out.println("Major: " + s.major);
+                    System.out.println("Class Rank: " + s.classRank);
+                    System.out.println("Student Email: " + s.studentEmail);
+                    break;
+
+                case 0:
+                    System.out.println("Goodbye.");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice.");
+            }
+
+        } while(choice != 0);
+
+        input.close();
+    }
+}
